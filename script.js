@@ -56,7 +56,7 @@ function showWelcomeMessage() {
   chatWindow.innerHTML = "";
   addChatMessage(
     "assistant",
-    "Hi, I can help you build a routine or answer questions about the products you selected."
+    "Hi, I can help you build a routine or answer questions about the products you selected.",
   );
 }
 
@@ -159,7 +159,10 @@ async function askAssistant(userMessage) {
     addChatMessage("assistant", assistantMessage);
   } catch (error) {
     loadingMessage.remove();
-    addChatMessage("assistant", "Sorry, something went wrong: " + error.message);
+    addChatMessage(
+      "assistant",
+      "Sorry, something went wrong: " + error.message,
+    );
   } finally {
     sendBtn.disabled = false;
     userInput.disabled = false;
@@ -240,7 +243,7 @@ function toggleSelectedProduct(productId, products) {
 
   if (alreadySelected) {
     selectedProducts = selectedProducts.filter(
-      (product) => product.id !== productId
+      (product) => product.id !== productId,
     );
   } else {
     const productToAdd = products.find((product) => product.id === productId);
@@ -333,7 +336,7 @@ function renderSelectedProducts() {
 /* Remove a selected product directly from selected list */
 function removeSelectedProduct(productId) {
   selectedProducts = selectedProducts.filter(
-    (product) => product.id !== productId
+    (product) => product.id !== productId,
   );
 
   if (currentProducts.length > 0) {
@@ -349,7 +352,7 @@ async function generateRoutineFromSelectedProducts() {
     chatWindow.innerHTML = "";
     addChatMessage(
       "assistant",
-      "Please select at least one product, then click Generate Routine."
+      "Please select at least one product, then click Generate Routine.",
     );
     return;
   }
@@ -382,7 +385,10 @@ async function generateRoutineFromSelectedProducts() {
     addChatMessage("assistant", routine);
   } catch (error) {
     loadingMessage.remove();
-    addChatMessage("assistant", "Sorry, something went wrong: " + error.message);
+    addChatMessage(
+      "assistant",
+      "Sorry, something went wrong: " + error.message,
+    );
   } finally {
     generateRoutineBtn.disabled = false;
     sendBtn.disabled = false;
@@ -400,7 +406,7 @@ categoryFilter.addEventListener("change", async (event) => {
   const selectedCategory = event.target.value;
 
   const filteredProducts = products.filter(
-    (product) => product.category === selectedCategory
+    (product) => product.category === selectedCategory,
   );
 
   displayProducts(filteredProducts);
